@@ -9,16 +9,16 @@
 - [x] defining relative and absolute values
 - [x] formatting absolute values
 - [x] safe absolute value adjustment
-- [x] unsafe absolute value adjustment
+- [x] strict absolute value adjustment
 - [x] initializing absolute values from a `Foundation.Date`
 - [x] initializing absolute values from components
 - [x] differences between absolute values
 - [x] enumerating absolute values
 - [x] parsing absolute values from strings
 - [x] Rename `Delta`. Possible candidates:
-    - `Difference` (This was chosen)
+    - `Difference` (This was chosen, then renamed again to `TimeDifference`)
     - `Interval`
-- [ ] Rename `Value`. Possible candidates:
+- [x] Rename `Value`. Possible candidates:
     - `TimeSlice`
     - `Period`
     - `TemporalRange`
@@ -26,6 +26,7 @@
     - `Measurement`
     - `Quantum`
     - `Quantity`
+    - `TimePeriod` (chosen)
 - [ ] documentation
 - [x] Project organization
 
@@ -33,7 +34,7 @@
 
 Fill out base functionality and fully implement `Relative` values:
 
-- [ ] Format `Difference` values using `DateComponentsFormatter`
+- [ ] Format `TimeDifference` values using `DateComponentsFormatter`
 - [ ] simple relative comparisons (`isBefore`, `isAfter`, etc)
 - [ ] rounding absolute values (adjust to the nearest 7 minutes, for example)
 - [ ] public adjustment api (currently internal)
@@ -41,7 +42,7 @@ Fill out base functionality and fully implement `Relative` values:
 - [x] initializing relative values from a `Foundation.Date`
 - [ ] initializing relative values from components
 - [ ] safe relative value adjustment
-- [ ] unsafe relative value adjustment
+- [ ] strict relative value adjustment
 - [ ] differences between relative values
 - [ ] enumerating relative values
 - [ ] parsing relative values from strings

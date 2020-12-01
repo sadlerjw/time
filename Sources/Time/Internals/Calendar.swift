@@ -28,16 +28,22 @@ internal extension Calendar {
     var isEraRelevant: Bool { return identifier == .japanese }
     
     func exactDate(from components: DateComponents, matching: Set<Calendar.Component>) throws -> Date {
-        let restricted = try components.requireAndRestrict(to: matching)
+        var restricted = try components.requireAndRestrict(to: matching)
         
         guard let proposed = self.date(from: restricted) else {
-            throw AdjustmentError.invalidDateComponents(restricted)
+            let r = Region(calendar: self, timeZone: self.timeZone, locale: self.locale ?? .current)
+            throw TimeError.invalidDateComponents(restricted, in: r)
         }
         
         let proposedComponents = self.dateComponents(matching, from: proposed)
         
+        if isEraRelevant == false && restricted.era == nil {
+            restricted.era = proposedComponents.era
+        }
+        
         guard proposedComponents == restricted else {
-            throw AdjustmentError.invalidDateComponents(restricted)
+            let r = Region(calendar: self, timeZone: self.timeZone, locale: self.locale ?? .current)
+            throw TimeError.invalidDateComponents(restricted, in: r)
         }
         
         return proposed
